@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Froze{
+    - subscibers1:List<SubscriberFroze>
+    + Froze_LOCK:Object
+    + addSubsciber1(SubscriberFroze subscriber):void
+    + froze(int locationX, int locationY, int speedX, int speedY)
+    + active(HeroAircraft heroaircraft):void
+}
+interface SubscriberFroze
+{
+    update1():void
+    reset():void
+}
+abstract class AbstractAircraft
+{
+    # maxHp:int
+    # hp:int
+    # shootNum:int
+    # power:int
+    # direction:int
+    - strategy:Strategy
+    + AbstractAircraft(int locationX, int locationY, int speedX, int speedY, int hp)
+    + decreaseHp(int decrease):void
+    + getStrategy():Strategy
+    + executeShoot(int x,int y,int speedX,int speedY,int shootNum,int power,int direction,boolean flag):List<BaseBullet>
+    + update():void
+    + update1():void
+    + reset():void
+ }
+AbstractAircraft-right.>SubscriberFroze
+SubscriberFroze<--o Froze
+
+@enduml

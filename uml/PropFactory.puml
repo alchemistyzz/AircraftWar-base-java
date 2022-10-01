@@ -1,0 +1,88 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface AbstractPropFactory
+{
+    createProp(int locationX, int locationY, int speedX, int speedY):AbstractProp;
+}
+abstract class AbstractProp
+{
+	+ AbstractProp(int locationX, int locationY, int speedX, int speedY)
+    + forward():void
+    + active(HeroAircraft heroaircraft):void
+ }
+class Blood {
+    + blood(int locationX, int locationY, int speedX, int speedY)
+    + active(HeroAircraft heroaircraft):void
+}
+
+class Bomb {
+    - subscibers:List<Subscriber>
+    + addSubsciber(Subsciber subsciber):void
+    + bomb(int locationX, int locationY, int speedX, int speedY)
+    + active(HeroAircraft heroaircraft):void
+}
+class Bullet {
+    + Bullet_LOCK:Object
+    + bullet(int locationX, int locationY, int speedX, int speedY)
+    + active(HeroAircraft heroaircraft):void
+}
+class Damage{
+    + damage(int locationX, int locationY, int speedX, int speedY)
+    + active(HeroAircraft heroaircraft):void
+}
+class Froze{
+    - subscibers1:List<SubscriberFroze>
+    + Froze_LOCK:Object
+    + addSubsciber1(SubscriberFroze subscriber):void
+    + froze(int locationX, int locationY, int speedX, int speedY)
+    + active(HeroAircraft heroaircraft):void
+}
+class Lift{
+    + Lift(int locationX, int locationY, int speedX, int speedY)
+    + active(HeroAircraft heroaircraft):void
+    }
+
+AbstractProp <|-- Blood
+AbstractProp <|-- Bomb
+AbstractProp <|-- Bullet
+AbstractProp <|-- Damage
+AbstractProp <|-- Froze
+AbstractProp <|-- Lift
+class BloodFactory
+{
+    + createProp(int locationX, int locationY, int speedX, int speedY):AbstractAircraft
+}
+
+class BombFactory
+{
+    + createProp(int locationX, int locationY, int speedX, int speedY):AbstractAircraft
+}
+class BulletFactory
+{
+    + createProp(int locationX, int locationY, int speedX, int speedY):AbstractAircraft
+}
+class FrozeFactory
+{
+    + createProp(int locationX, int locationY, int speedX, int speedY):AbstractAircraft
+}
+class DamageFactory
+{
+    + createProp(int locationX, int locationY, int speedX, int speedY):AbstractAircraft
+}
+class LiftFactory
+{
+    + createProp(int locationX, int locationY, int speedX, int speedY):AbstractAircraft
+}
+
+BulletFactory-right.>AbstractPropFactwory
+BombFactory-up.>AbstractPropFactory
+BloodFactory-up.>AbstractPropFactory
+FrozeFactory-down.>AbstractPropFactory
+DamageFactory-up.>AbstractPropFactory
+LiftFactory-down.>AbstractPropFactory
+
+
+
+@enduml

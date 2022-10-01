@@ -1,0 +1,80 @@
+@startuml
+class  Database{
+    - database_url:String
+    - database_account:String
+    - database_password:String
+    - database:Datebase
+    - connection:Connection
+    - statement:Statement
+    - preparedStatement:PreparedStatement
+    - ranklist:List<Ranklist>
+    - users:List<User>
+
+    - Datebase()
+    + init():void
+    + getInstance():Datebase
+    + executeQuery(String sql):Resultset
+    + execute(String sql):boolean
+    + userExistByAccount(String account):boolean
+    + addRankList(RankList rankList):void
+    + addUser(User user):void
+    + deleteUser(RankList rankList):void
+    + deleteRankList(RankList rankList):void
+    + updateRanklist(RankList rankList):void
+    + updateUser(User user):void
+    + getAllRankListGlobal(int mode):List<Ranklist>
+    + getAllRankListByUser(int mode):List<Ranklist>
+    + getRankListById(int id):ranklist
+    + getAllUser():List<User>
+    + getUserById(int id):User
+    + getUserByAccount(String account):User
+}
+    class Ranklist{
+    - id:int
+    - user_id:int
+    - score:int
+    - user_name:String
+    - time:String
+    - mode:int
+    }
+    class RanklistAdapter{
+    - ranklist:List<Ranklist>
+    + context:Context
+    + RanklistAdapter(RankList rankList)
+    + getView(int position, View convertView, ViewGroup parent):View
+    }
+    class User{
+    - id:int
+    - name:String
+    - accont:String
+    - database_password:String
+    - register_time:String
+    - money:int
+    - super_prop_cnt:int
+    - froze_prop_cnt:int
+    - bomb_prop_cnt:int
+    }
+interface DatabaseInterface
+{
+    addRankList(RankList rankList):void;
+    addUser(User user):void;
+    deleteRankList(RankList rankList):void;
+    deleteUser(User user):void;
+    updateRanklist(RankList rankList):void;
+    updateUser(User user):void;
+    userExistByAccount(String account):boolean;
+    getAllRankListGlobal(int mode):List<RankList> ;
+    getAllRankListByUser(int mode,int userId):List<RankList>;
+    getRankListById(int id):Ranklist;
+    getAllUser():List<User>;
+    getUserById(int id):User;
+    getUserByAccount(String account):User;
+    execute(String sql):boolean;
+    executeQuery(String sql):Resultset;
+}
+
+
+    DatabaseInterface<|..Database
+    Database<|-User
+    Database<|-Ranklist
+@enduml

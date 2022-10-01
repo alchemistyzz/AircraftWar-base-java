@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface DataDao
+{
+    findRecord(String playerName):void;
+    getAllRecords():List<Record>;
+    doAdd(Record record):void;
+    doDelete(int order):void;
+    update():void;
+    display():void;
+}
+class Record{
+    -: score:int;
+    -: playerName:String;
+    -: time:String;
+    -: order:int;
+
+    +:Record(String playerName,int score)
+    +:getPlayerName():String
+    +:setPlayerName(String playerName):void
+    +:getScore():int
+    +:setScore():void
+    +:getTime():String
+    +:setTime():void
+    +:getOrder():int
+    +:setOrder():void
+
+
+}
+
+class RecordDaoImpl{
+    -:records:List<Record>
+    -:pathname:String
+    -:file:File
+    +:RecordDaoImpl()
+    +:getAllRecords():List<Record>
+    +:findRecord(String playerName):void
+    +:doDelete(int order)：void
+    +:doAdd(Record record):void
+    +:display():void
+    +:update():void
+    +:writeFile() throws IOException:void
+    +:readFile() throws IOException :void
+
+}
+DataDao <|.. RecordDaoImpl
+Record <|-- RecordDaoImpl
+
+@enduml

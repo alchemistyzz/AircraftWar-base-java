@@ -1,0 +1,78 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Abstract class BaseGame{
+    # ScheduledExecutorService executorService;
+    # timeInterval :int
+    # heroAircraft:HeroAircraft
+    # enemyAircrafts:List<AbstractAircraft>
+    # heroBullets:List<BaseBullet>
+    # enemyBullets:List<BaseBullet>
+    # props:List<AbstractProp>
+    # enemyFactory:EnemyFactory
+    # propFactory:AbstractPropFactory
+    # surrvial: boolean
+    # BACKGROUND_IMAGE:BufferedImage
+    # bgmBossThread:MusicThread
+    # existflag:boolean
+    # hasFroze:boolean
+    # hasDamage:boolean
+    # soundEnabled:boolean
+    # enemyMaxNumber:int
+    # time:int
+    # limit:int
+    # limit1:int
+    # limitReg:int
+    # has:boolean
+    # score:int
+    # probability:double
+    # increaseEnemyProbabliliy:double
+    # increaseEnemyHp:double
+    # increaseEnemySpeed:double
+    # increaseCycleDuration:double
+    # shootnum:int
+    # first:boolean
+    # cycleDuration:int
+    # cycleTime:int
+    - bgmThread :MusicThread
+    - gameOverThread :MusicThread
+    - bulletHitThread:MusicThread
+    - bombExplosionThread:MusicThread
+    - getSupplyThread；MusicThread
+    - gameOverFlag:boolean
+    + BaseGame()
+    + produceEnemy():void
+    + increase():void
+    + action():void
+    - shootAction():void
+    - bulletsMoveAction():void
+    - aircraftsMoveAction():void
+    - crashCheckAction():void
+    - propsMoveAction():void
+    - postProcessAction():void
+    + paint(Graphics g):void
+    - paintImageWithPositionRevised(Graphics g, List<? extends AbstractFlyingObject> objects):void
+    - paintScoreAndLife(Graphics g):void
+}
+
+class easyGame{
+    + easyGame()
+    + produceEnemy():void
+}
+
+class mediumGame{
+    + mediumGame()
+    + increase():void
+    + produceEnemy():void
+}
+class hardGame{
+    + hardGame()
+    + increase():void
+    + produceEnemy():void
+}
+
+BaseGame <|--easyGame
+BaseGame <|--mediumGame
+BaseGame <|--hardGame
+
+@enduml
